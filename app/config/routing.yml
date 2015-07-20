@@ -1,0 +1,4 @@
+acme_padel:
+    resource: "@AcmePadelBundle/Resources/config/routing.yml"
+    prefix:   /
+

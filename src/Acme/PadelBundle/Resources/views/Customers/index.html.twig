@@ -1,0 +1,41 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Login{% endblock %} 
+{% block form %}
+            <section class="indice">
+                  <div class="contactar bg_form shadow">
+                      <p class="titular">Promociones</p>
+                      <table width="90%" border="1">
+                          <tr>
+                            <th scope="col">NIF</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Poblacion</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col"><div align="center"><a href="customer.php"><img src={{ asset('bundles/PadelBundle/images/icons/ic_input_add.png')}} width="48" height="48" alt="añadir" longdesc="Añadir" /></a></div></th>
+                          </tr>
+
+                      {% for customer in customers%}
+                          <tr>
+                            <td>{{ customer.nif }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.secondname }}</td>
+                            <td>{{ customer.address }}</td>
+                            <td>{{ customer.postalCode }} - {{ customer.city }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.phone }}</td>
+                            <td><div align="center"><a href="customer.php?ID=<?php echo $row_clientsRS['_id']; ?>">
+                              <img src={{ asset('bundles/PadelBundle/images/icons/ic_menu_edit.png')}} alt="editar" width="34" height="34" longdesc="Editar" /></a>&nbsp; 
+                              <img src={{ asset('bundles/PadelBundle/images/icons/ic_delete.png')}} alt="eliminar" width="34" height="34" longdesc="Eliminar" /></div></td>
+                          </tr>
+                      {% endfor %}
+                        </table>
+                      <p></p>
+                  </div>
+              </section>
+          </div>
+        </div>
+    </section>
+{% endblock %}

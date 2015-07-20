@@ -1,0 +1,51 @@
+acme_padel_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AcmePadelBundle:Default:index }
+
+padel_groups:
+    path:     /groups
+    defaults: { _controller: AcmePadelBundle:Groups:index }
+
+padel_articles:
+    path:     /articles
+    defaults: { _controller: AcmePadelBundle:Articles:index }
+
+padel_sizes:
+    path:     /sizes
+    defaults: { _controller: AcmePadelBundle:Sizes:index }
+
+padel_customers:
+    path:     /customers
+    defaults: { _controller: AcmePadelBundle:Customers:index }
+
+padel_customers:
+    path:     /customers/new
+    defaults: { _controller: AcmePadelBundle:Customers:new }
+
+padel_customers:
+    path:     /customers/{id}
+    defaults: { _controller: AcmePadelBundle:Customers:show }
+
+padel_customers:
+    path:     /customers/update/{id}
+    defaults: { _controller: AcmePadelBundle:Customers:update }
+
+padel_customers:
+    path:     /customers/delete/{id}
+    defaults: { _controller: AcmePadelBundle:Customers:delete }
+
+padel_orders:
+    path:     /orders
+    defaults: { _controller: AcmePadelBundle:Orders:index }
+
+padel_notifications:
+    path:     /notifications
+    defaults: { _controller: AcmePadelBundle:Notifications:index }
+
+padel_empty:
+    path:     /nothing
+    defaults: { _controller: AcmePadelBundle:Notifications:index }
+
+padel_welcome:
+    path:     /{name}
+    defaults: { _controller: AcmePadelBundle:Loged:index, 'name': 'hola' }

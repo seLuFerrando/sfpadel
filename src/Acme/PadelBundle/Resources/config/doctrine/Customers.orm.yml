@@ -1,0 +1,44 @@
+Acme\PadelBundle\Entity\Customers:
+    type: entity
+    table: null
+    repositoryClass: Acme\PadelBundle\Entity\CustomersRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '255'
+        secondname:
+            type: string
+            length: 255
+        address:
+            type: string
+            length: 255
+        postalCode:
+            type: string
+            length: '5'
+        city:
+            type: string
+            length: 255
+        nif:
+            type: string
+            length: '9'
+        login:
+            type: string
+            length: '50'
+        password:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: '50'
+        phone:
+            type: string
+            length: '9'
+        date:
+            type: date
+    lifecycleCallbacks: {  }
