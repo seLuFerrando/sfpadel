@@ -18,19 +18,19 @@ padel_customers:
     path:     /customers
     defaults: { _controller: AcmePadelBundle:Customers:index }
 
-padel_customers:
+padel_customers_new:
     path:     /customers/new
     defaults: { _controller: AcmePadelBundle:Customers:new }
 
-padel_customers:
+padel_customers_show:
     path:     /customers/{id}
-    defaults: { _controller: AcmePadelBundle:Customers:show }
+    defaults: { _controller: AcmePadelBundle:Customers:show, 'id': '1' }
 
-padel_customers:
+padel_customers_update:
     path:     /customers/update/{id}
     defaults: { _controller: AcmePadelBundle:Customers:update }
 
-padel_customers:
+padel_customers_delete:
     path:     /customers/delete/{id}
     defaults: { _controller: AcmePadelBundle:Customers:delete }
 

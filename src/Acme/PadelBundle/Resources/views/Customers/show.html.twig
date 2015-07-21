@@ -1,0 +1,94 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Login{% endblock %} 
+{% block form %}
+              <section class="indice">
+                  <div class="contactar bg_form shadow">
+                      <p class="titular"><?php if($id!=0){echo "Cliente ".$row_rsCustomer['_id'];}else{echo "Nuevo Cliente";} ?></p>
+                          <form action="<?php echo $editFormAction; ?>" method="POST" enctype="multipart/form-data" name="Customer" class="myform" >
+                              <fieldset>
+                                  <label>Nombre:</label>
+                                  <input name="Name" type="text" value="<?php if($id!=0)echo $row_rsCustomer['name']; ?>"/>
+                                  <label>Apellidos:</label>
+                                  <input name="SecondName" type="text" value="<?php if($id!=0)echo $row_rsCustomer['secondname']; ?>"/>
+                                  <label>Direccion:</label>
+                                  <input name="Address" type="text" value="<?php if($id!=0)echo $row_rsCustomer['address']; ?>"/>
+                                  <label>Codigo postal:</label>
+                                  <input name="PostalCode" type="text" value="<?php if($id!=0)echo $row_rsCustomer['postalCode']; ?>"/>
+                                  <label>Localidad:</label>
+                                  <input name="City" type="text" value="<?php if($id!=0)echo $row_rsCustomer['city']; ?>"/>
+                                  <label>NIF:</label>
+                                  <input name="Nif" type="text" value="<?php if($id!=0)echo $row_rsCustomer['nif']; ?>"/>
+                                  <label>Login:</label>
+                                  <input name="Login" type="text" value="<?php if($id!=0)echo $row_rsCustomer['login']; ?>"/>
+                                  <label>Password:</label>
+                                  <input name="Password" type="password" value="<?php if($id!=0)echo $row_rsCustomer['password']; ?>"/>
+                                  <label>Email:</label>
+                                  <input name="Email" type="text" value="<?php if($id!=0)echo $row_rsCustomer['email']; ?>"/>
+                                  <label>Telefono:</label>
+                                  <input name="Phone" type="text" value="<?php if($id!=0)echo $row_rsCustomer['phone']; ?>"/>
+                                  <label>Fecha de Alta:</label>
+                                  <input name="Date" type="text" value="<?php if($id!=0)echo $row_rsCustomer['date']; ?>"/>
+                              </fieldset>
+                              <input name="Actualizar" type="submit" value="Actualizar" />
+                              <input type="hidden" name="MM_insert" value="Customer" />
+                          </form>
+                        <p></p>
+                  </div>
+              </section>
+              <section <?php if($id==0) echo "style='hidden";?> class="indice">
+                  <div class="contactar bg_form shadow">
+                      <p class="titular">Pedidos del Cliente</p>
+                        <!-- tabla pedidos -->
+                        <table width="98%" border="1">
+                          <tr>
+                            <th scope="col">Pedido</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Importe</th>
+                            <th scope="col">Tipo Pago</th>
+                            <th scope="col">Preparado</th>
+                            <th scope="col">Cobrado</th>
+                            <th scope="col">Servido</th>
+                            <th scope="col"><!--<div align="center"><a href="order.php"><img src="images/icons/ic_input_add.png" width="48" height="48" alt="añadir" longdesc="Añadir" /></a></div>--></th>
+                          </tr>
+                          <?php do { ?>
+                            <tr>
+                              <td><?php echo $row_rsOrders['order']; ?></td>
+                              <td><?php echo $row_rsOrders['date']; ?></td>
+                              <td><?php echo $row_rsOrders['total']; ?></td>
+                              <td><?php echo $row_rsOrders['payment'];?></td>
+                              <td><div align="center"><input name="Ready" type="checkbox" value="<?php if($row_rsOrders['ready']==1) echo "checked";?> "/></div></td>
+                              <td><div align="center"><input name="Cashed" type="checkbox" value="<?php if($row_rsOrders['cashed']==1) echo "checked";?> "/></div></td>
+                              <td><div align="center"><input name="Dispatch" type="checkbox" value="<?php if($row_rsOrders['dispatch']==1) echo "checked";?> "/></div></td>
+                              <td><div align="center"><a href="order.php?ID=<?php echo $row_rsOrders['_id']; ?>">
+                                <img src="images/icons/ic_menu_edit.png" alt="editar" width="34" height="34" longdesc="Editar" /></a>&nbsp; 
+                                <img src="images/icons/ic_delete.png" alt="eliminar" width="34" height="34" class="jslink" onClick="popDelete(<?php echo $row_rsOrders['_id']; ?>)" /></div></td>
+                            </tr>
+                            <?php } while ($row_rsOrders = mysql_fetch_assoc($rsOrders)); ?>
+                        </table>
+                      <p></p>
+                  </div>
+              </section>
+              <div id="popUpDiv">
+                <form action="<?php echo $editFormAction; ?>" method="POST" enctype="multipart/form-data" name="Articles">  
+                  <h3>Desea eliminar el Pedido definitivamente?</h3>
+                  <input id="Article" name="Article" type="hidden" value="0"/>
+                  <input id="submitBt" name="Actualizar" type="submit" value="Eliminar" />
+                  <button id="cancelarBt" onClick="popHide()">Cancelar</button> 
+                  <input id="deleteValue" type="hidden" name="MM_delete" value="Delete" />
+              </form>
+              </div>
+              <script type="text/javascript">
+                  function popDelete(a){
+                    $("#Article").val(a);
+                    $("#popUpDiv").show();
+                  }
+                  function popHide(){
+                    $("#deleteValue").val('nothing');
+                    $("#popUpDiv").hide();
+                  }
+              </script>
+          </div>
+        </div>
+    </section>
+{% endblock %}
